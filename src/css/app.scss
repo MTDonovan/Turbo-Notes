@@ -1,0 +1,41 @@
+/** app global css in SCSS form */
+
+// #main-notes-index {
+//     padding: 20px;
+//     display: grid;
+//     grid-template-rows: repeat(auto-fit, minmax(20px, 40px));
+//     div {
+//         grid-template-columns: 10% 90%;
+//         grid-gap: 5px;
+//     }
+// }
+
+.checklist-title-text {
+  display: block;
+  width: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.checklist-name-in-drawer {
+  word-break: break-word;
+}
+
+.checklist-desc-in-drawer {
+  word-break: break-word;
+}
+
+.no-checklists-found-message {
+  font-size: 12pt;
+  padding: 12px;
+  font-style: italic;
+  text-align: center;
+}
+
+.checklist-item {
+  // border-bottom: 1.5px solid lightgrey;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  word-break: break-word;
+}

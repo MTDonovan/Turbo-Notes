@@ -1,0 +1,7 @@
+{
+  "appId": "org.cordova.quasar.app",
+  "appName": "Turbo Notes",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}
