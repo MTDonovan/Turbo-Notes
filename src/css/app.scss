@@ -46,3 +46,11 @@
   padding-bottom: 7px;
   word-break: break-word;
 }
+
+#q-app {
+  .q-drawer-container {
+    > aside {
+      padding-bottom: 40px;
+    }
+  }
+}
