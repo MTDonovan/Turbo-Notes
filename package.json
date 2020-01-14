@@ -10,10 +10,11 @@
   "scripts": {
     "browser": "quasar dev",
     "electron": "quasar dev -m electron",
-    "android": "quasar dev -m android --ide"
+    "android": "quasar dev -m capacitor -T android --ide"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
+    "axios": "^0.19.1",
     "quasar": "^1.0.0"
   },
   "devDependencies": {

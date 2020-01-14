@@ -15,7 +15,8 @@
         Turbo Notes
       </q-toolbar-title>
       <label @class="checklist-title-text" v-if="this.activeChecklist.name">{{ this.activeChecklist.name }}</label>
-      <i v-else>No checklist name</i>
+      <!-- In the event there is no active checklist, do not display the 'No checklist name' text. -->
+      <i v-else>{{ !this.activeChecklist.id ? '' : 'No checklist name' }}</i>
     </q-toolbar>
   </q-header>
 
@@ -26,7 +27,9 @@
     content-class="bg-grey-2"
     >
     <q-list>
-      <q-item-label header>Checklists</q-item-label>
+      <div>
+        <q-item-label header>Checklists</q-item-label>
+      </div>
       <q-item clickable tag="a" v-for="(i, k) in checklists" :key="k" :style="checklistSelectorStyle(i.active)">
         <q-item-section avatar @click="_setActiveCheckList(i.id)">
           <q-icon name="view_list" />
@@ -40,7 +43,7 @@
         <q-checkbox v-model="i.selected"></q-checkbox>
       </q-item>
     </q-list>
-    <q-item-label v-if="!checklists" class="no-checklists-found-message">No checklists found</q-item-label>
+    <q-item-label v-if="checklists.length < 1" class="no-checklists-found-message">Click "Create" to start a new checklist</q-item-label>
 
       <q-dialog v-model="prompt" persistent>
         <q-card style="min-width: 350px">
@@ -49,7 +52,7 @@
           </q-card-section>
           <q-card-section>
             <q-input maxlength="50" placeholder="Enter checklist name" dense v-model="tempChecklistName" autofocus @keyup.enter="_addNewChecklist()" />
-            <q-input placeholder="Enter checklist description" dense v-model="tempChecklistDesc" @keyup.enter="_addNewChecklist()" />
+            <q-input placeholder="Enter checklist description (optional)" dense v-model="tempChecklistDesc" @keyup.enter="_addNewChecklist()" />
           </q-card-section>
           <q-card-actions align="right" class="text-primary">
             <q-btn @click="_addNewChecklist()" flat label="Add" v-close-popup />
@@ -95,7 +98,7 @@ const crypto = require("crypto");
 
 export default {
   name: 'MyLayout',
-  data () {
+  data() {
     return {
       leftDrawerOpen: false,
       tempChecklistName: "",
@@ -113,6 +116,11 @@ export default {
       return this.$store.getters.getActiveChecklist;
     }
   },
+  mounted() {
+    if (this.checklists.length < 1) {
+      this.leftDrawerOpen = true;
+    }
+  },
   methods: {
     generateId() {
       return crypto.randomBytes(16).toString("hex");
@@ -127,7 +135,7 @@ export default {
           "background-color": "lightgrey"
         }
       }
-      return {}
+
     },
     _removeSelectedChecklists() {
       this.$store.commit("removeSelectedChecklists");

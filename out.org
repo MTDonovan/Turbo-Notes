@@ -1,0 +1,2 @@
+- [X] src-cordova/platforms/android/app/src/main/AndroidManifest.xml:2:<manifest android:hardwareAccelerated="true" android:versionCode="1" android:versionName="0.0.1" package="com.fnacross.turbonotes" xmlns:android="http://schemas.android.com/apk/res/android">
+- [X] src-cordova/platforms/android/CordovaLib/AndroidManifest.xml:21:      package="org.apache.cordova" android:versionName="1.0" android:versionCode="1">

@@ -1,6 +1,7 @@
 <template>
 <q-page id="main-notes-index" class="flex flex-left">
   <q-list>
+    <q-item-label v-if="!activeChecklist.id" class="no-active-checklist-found-message">No checklist is currently open.<br><br>Click the hamburger icon at the top left to open the checklists overview.</q-item-label>
     <q-item class="checklist-item" v-if="activeChecklist" v-for="(i, k) in activeChecklistItems " :key="k">
       <q-item-section class="col-2" style="margin-right: 12px;">
         <q-checkbox v-model="i.selected"></q-checkbox>
