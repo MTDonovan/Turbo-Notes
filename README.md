@@ -1,2 +1,2 @@
 ### Turbo Notes
-A free and open source checklist app created using VueJS + Cordova.
+A free and open source checklist app created using VueJS.
