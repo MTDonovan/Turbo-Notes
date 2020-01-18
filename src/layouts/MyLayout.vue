@@ -43,7 +43,7 @@
         <q-checkbox v-model="i.selected"></q-checkbox>
       </q-item>
     </q-list>
-    <q-item-label v-if="checklists.length < 1" class="no-checklists-found-message">Click "Create" to start a new checklist</q-item-label>
+    <q-item-label v-if="!checklists || checklists.length < 1" class="no-checklists-found-message">Click "Create" to start a new checklist</q-item-label>
 
       <q-dialog v-model="prompt" persistent>
         <q-card style="min-width: 350px">
@@ -117,7 +117,7 @@ export default {
     }
   },
   mounted() {
-    if (this.checklists.length < 1) {
+    if (!this.checklists || this.checklists.length < 1) {
       this.leftDrawerOpen = true;
     }
   },
