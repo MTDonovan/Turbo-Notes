@@ -205,6 +205,19 @@ export default new Vuex.Store({
       });
 
       LocalStorage.set("checklists", state.checklists);
+    },
+    setChecklistItems(state, updatedItemsArray) {
+      /**
+       * Update the active checklist items when they are sorted.
+       */
+      let activeChecklist = state.checklists.filter(i => i.active)[0];
+      state.checklists.map(i => {
+        if (i.id === activeChecklist.id) {
+          i.items = updatedItemsArray;
+        }
+      });
+
+      LocalStorage.set("checklists", state.checklists);
     }
   }
 });

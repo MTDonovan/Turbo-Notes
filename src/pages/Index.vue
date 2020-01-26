@@ -2,15 +2,19 @@
 <q-page id="main-notes-index" class="flex flex-left">
   <q-list>
     <q-item-label v-if="!activeChecklist.id" class="no-active-checklist-found-message">No checklist is currently open.<br><br>Click the hamburger icon at the top left to open the checklists overview.</q-item-label>
-    <q-item class="checklist-item" v-if="activeChecklist" v-for="(i, k) in activeChecklistItems " :key="k">
-      <q-item-section class="col-2" style="margin-right: 12px;">
-        <q-checkbox v-model="i.selected"></q-checkbox>
-      </q-item-section>
-      <q-item-section class="col-9">
-        <q-item-label v-if="i.text" @click="openUpdateChecklistItemPrompt(i)">{{ i.text }}</q-item-label>
-        <q-item-label v-else="i.text" @click="openUpdateChecklistItemPrompt(i)"><i>No item text</i></q-item-label>
-      </q-item-section>
-    </q-item>
+
+    <draggable v-if="activeChecklist" v-model="activeChecklistItems" @start="drag=true" @end="drag=false">
+      <q-item class="checklist-item" v-if="activeChecklist" v-for="(i, k) in activeChecklistItems " :key="k">
+        <q-item-section class="col-2" style="margin-right: 12px;">
+          <q-checkbox v-model="i.selected"></q-checkbox>
+        </q-item-section>
+        <q-item-section class="col-9">
+          <q-item-label v-if="i.text" @click="openUpdateChecklistItemPrompt(i)">{{ i.text }}</q-item-label>
+          <q-item-label v-else="i.text" @click="openUpdateChecklistItemPrompt(i)"><i>No item text</i></q-item-label>
+        </q-item-section>
+      </q-item>
+    </draggable>
+
   </q-list>
 
     <q-dialog v-model="prompt" persistent>
@@ -55,10 +59,14 @@
 
 <script>
 const crypto = require("crypto");
+import draggable from 'vuedraggable';
 
 
 export default {
   name: 'PageIndex',
+  components: {
+    draggable
+  },
   data() {
     return {
       prompt: false,
@@ -71,8 +79,14 @@ export default {
     activeChecklist() {
       return this.$store.getters.getActiveChecklist;
     },
-    activeChecklistItems() {
-      return this.$store.getters.getActiveChecklist.items;
+    activeChecklistItems: {
+      get() {
+        return this.$store.getters.getActiveChecklist.items;
+      },
+      set(updatedItemsArray) {
+        /* this.activeChecklistItems = setValue; */
+        this.$store.commit("setChecklistItems", updatedItemsArray);
+      }
     },
     disableChecklistItemButtons() {
       if (!this.$store.state.checklists) {
