@@ -84,7 +84,6 @@ export default {
         return this.$store.getters.getActiveChecklist.items;
       },
       set(updatedItemsArray) {
-        /* this.activeChecklistItems = setValue; */
         this.$store.commit("setChecklistItems", updatedItemsArray);
       }
     },

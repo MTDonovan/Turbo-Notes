@@ -189,6 +189,13 @@ export default new Vuex.Store({
 
       LocalStorage.set("checklists", state.checklists);
     },
+    setChecklists(state, updatedChecklistsArray) {
+      /**
+       * Update the checklists array when the checklists are sorted.
+       */
+      state.checklists = updatedChecklistsArray;
+      LocalStorage.set("checklists", state.checklists);
+    },
     updateChecklistItem(state, itemObj) {
       /**
        * Update the clicked checklist item.

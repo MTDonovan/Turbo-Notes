@@ -30,18 +30,22 @@
       <div>
         <q-item-label header>Checklists</q-item-label>
       </div>
-      <q-item clickable tag="a" v-for="(i, k) in checklists" :key="k" :style="checklistSelectorStyle(i.active)">
-        <q-item-section avatar @click="_setActiveCheckList(i.id)">
-          <q-icon name="view_list" />
-        </q-item-section>
 
-        <q-item-section @click="openUpdateChecklistPrompt(i)">
-          <q-item-label class="checklist-name-in-drawer" v-if="i.name">{{ i.name }}</q-item-label>
-          <q-item-label v-else="i.name"><i>No checklist name</i></q-item-label>
-          <q-item-label class="checklist-desc-in-drawer" :style="i.desc ? '' : 'font-style: italic'" caption>{{ i.desc ? i.desc : 'No description' }}</q-item-label>
-        </q-item-section>
-        <q-checkbox v-model="i.selected"></q-checkbox>
-      </q-item>
+      <draggable v-model="checklists" @start="drag=true" @end="drag=false">
+        <q-item clickable tag="a" v-for="(i, k) in checklists" :key="k" :style="checklistSelectorStyle(i.active)">
+          <q-item-section avatar @click="_setActiveCheckList(i.id)">
+            <q-icon name="view_list" />
+          </q-item-section>
+
+          <q-item-section @click="openUpdateChecklistPrompt(i)">
+            <q-item-label class="checklist-name-in-drawer" v-if="i.name">{{ i.name }}</q-item-label>
+            <q-item-label v-else="i.name"><i>No checklist name</i></q-item-label>
+            <q-item-label class="checklist-desc-in-drawer" :style="i.desc ? '' : 'font-style: italic'" caption>{{ i.desc ? i.desc : 'No description' }}</q-item-label>
+          </q-item-section>
+          <q-checkbox v-model="i.selected"></q-checkbox>
+        </q-item>
+      </draggable>
+
     </q-list>
     <q-item-label v-if="!checklists || checklists.length < 1" class="no-checklists-found-message">Click "Create" to start a new checklist</q-item-label>
 
@@ -94,10 +98,14 @@
 
 <script>
 const crypto = require("crypto");
+import draggable from 'vuedraggable';
 
 
 export default {
   name: 'MyLayout',
+  components: {
+    draggable
+  },
   data() {
     return {
       leftDrawerOpen: false,
@@ -109,8 +117,13 @@ export default {
     }
   },
   computed: {
-    checklists() {
-      return this.$store.getters.getAllCheckLists;
+    checklists: {
+      get() {
+        return this.$store.getters.getAllCheckLists;
+      },
+      set(updatedChecklistsArray) {
+        this.$store.commit("setChecklists", updatedChecklistsArray);
+      }
     },
     activeChecklist() {
       return this.$store.getters.getActiveChecklist;
