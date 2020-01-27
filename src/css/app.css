@@ -1,4 +1,48 @@
 /** app global css in SCSS form */
-#main-notes-index {
-  margin-top: 12px;
+.checklist-title-text {
+  display: block;
+  width: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.checklist-name-in-drawer {
+  word-break: break-word;
+}
+
+.checklist-desc-in-drawer {
+  word-break: break-word;
+}
+
+.no-checklists-found-message {
+  font-size: 12pt;
+  padding: 12px;
+  font-style: italic;
+  text-align: center;
+}
+
+.no-active-checklist-found-message {
+  font-size: 12pt;
+  padding: 12px;
+  font-style: italic;
+  text-align: center;
+}
+
+.checklist-item {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  word-break: break-word;
+  cursor: pointer;
+}
+
+#q-app .q-drawer-container > aside {
+  padding-bottom: 40px;
+}
+
+.q-header {
+  /* background-color: #f1bb69; */
+  color: #ffffff;
+  text-shadow: none;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.1));
 }

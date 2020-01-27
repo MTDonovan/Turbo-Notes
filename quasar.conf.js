@@ -133,7 +133,7 @@ module.exports = function (ctx) {
     cordova: {
       // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
       id: 'com.fnacross.turbonotes',
-      version: '5'
+      version: '6'
     },
 
 

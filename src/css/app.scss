@@ -1,5 +1,7 @@
 /** app global css in SCSS form */
 
+$default-gradient-style: linear-gradient(rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.1));
+
 // #main-notes-index {
 //     padding: 20px;
 //     display: grid;
@@ -54,4 +56,11 @@
       padding-bottom: 40px;
     }
   }
+}
+
+.q-header {
+  /* background-color: #f1bb69; */
+  color: #ffffff;
+  text-shadow: none;
+  background-image: $default-gradient-style;
 }
