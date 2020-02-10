@@ -39,7 +39,7 @@
 
           <q-item-section @click="openUpdateChecklistPrompt(i)">
             <q-item-label class="checklist-name-in-drawer" v-if="i.name">{{ i.name }}</q-item-label>
-            <q-item-label v-else="i.name"><i>No checklist name</i></q-item-label>
+            <q-item-label v-else><i>No checklist name</i></q-item-label>
             <q-item-label class="checklist-desc-in-drawer" :style="i.desc ? '' : 'font-style: italic'" caption>{{ i.desc ? i.desc : 'No description' }}</q-item-label>
           </q-item-section>
           <q-checkbox v-model="i.selected"></q-checkbox>

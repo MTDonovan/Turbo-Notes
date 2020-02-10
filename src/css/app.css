@@ -46,3 +46,18 @@
   text-shadow: none;
   background-image: linear-gradient(rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.1));
 }
+
+.checklist-entities-format {
+  display: grid;
+  grid-template-columns: 15% 90%;
+}
+
+.checklist-button-group {
+  margin-right: 20px;
+}
+
+.checklist-button-group button {
+  height: 25%;
+  font-size: 16pt;
+  border-radius: 0;
+}
