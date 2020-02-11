@@ -49,7 +49,7 @@
 
 .checklist-entities-format {
   display: grid;
-  grid-template-columns: 15% 90%;
+  grid-template-columns: 15% 85%;
 }
 
 .checklist-button-group {
