@@ -31,7 +31,7 @@
         <q-item-label header>Checklists</q-item-label>
       </div>
 
-      <draggable v-model="checklists" @start="drag=true" @end="drag=false">
+      <draggable v-model="checklists" @start="drag=true" @end="drag=false" handle=".handle">
         <q-item clickable tag="a" v-for="(i, k) in checklists" :key="k" :style="checklistSelectorStyle(i.active)">
           <q-item-section avatar @click="_setActiveCheckList(i.id)">
             <q-icon name="view_list" />
@@ -43,6 +43,7 @@
             <q-item-label class="checklist-desc-in-drawer" :style="i.desc ? '' : 'font-style: italic'" caption>{{ i.desc ? i.desc : 'No description' }}</q-item-label>
           </q-item-section>
           <q-checkbox v-model="i.selected"></q-checkbox>
+          <q-btn flat icon="menu" class="handle"></q-btn>
         </q-item>
       </draggable>
 
