@@ -7,8 +7,8 @@
         dense
         round
         @click="leftDrawerOpen = !leftDrawerOpen"
-        icon="menu"
-        aria-label="Menu"
+        icon="menu_open"
+        aria-label="menu_open"
         />
 
       <q-toolbar-title>
@@ -34,7 +34,7 @@
       <draggable v-model="checklists" @start="drag=true" @end="drag=false" handle=".handle">
         <q-item clickable tag="a" v-for="(i, k) in checklists" :key="k" :style="checklistSelectorStyle(i.active)">
           <q-item-section avatar @click="_setActiveCheckList(i.id)">
-            <q-icon name="view_list" />
+            <q-icon name="open_in_new" />
           </q-item-section>
 
           <q-item-section @click="openUpdateChecklistPrompt(i)">
@@ -59,7 +59,7 @@
             <q-input maxlength="50" placeholder="Enter checklist name" dense v-model="tempChecklistName" autofocus @keyup.enter="_addNewChecklist()" />
             <q-input placeholder="Enter checklist description (optional)" dense v-model="tempChecklistDesc" @keyup.enter="_addNewChecklist()" />
           </q-card-section>
-          <q-card-actions align="right" class="text-primary">
+          <q-card-actions align="left" class="text-primary">
             <q-btn @click="_addNewChecklist()" flat label="Add" v-close-popup />
             <q-btn flat label="Cancel" v-close-popup @click="closePrompt()" />
           </q-card-actions>
@@ -75,7 +75,7 @@
             <q-input maxlength="50" placeholder="Update checklist name" dense v-model="tempChecklistName" autofocus @keyup.enter="_updateChecklist()" />
             <q-input placeholder="Update checklist description" dense v-model="tempChecklistDesc" @keyup.enter="_updateChecklist()" />
           </q-card-section>
-          <q-card-actions align="right" class="text-primary">
+          <q-card-actions align="left" class="text-primary">
             <q-btn @click="_updateChecklist()" flat label="Update" v-close-popup />
             <q-btn flat label="Cancel" v-close-popup @click="closePrompt()" />
           </q-card-actions>
@@ -84,8 +84,8 @@
 
       <q-footer class="flex flex-center">
         <q-btn-group style="width: 100%">
-          <q-btn @click="prompt = true" class="col-6" color="primary" glossy label="Create" />
-          <q-btn @click="_removeSelectedChecklists()" class="col-6" color="secondary" glossy label="Remove" />
+          <q-btn @click="prompt = true" class="col-6" color="primary" glossy icon="create_new_folder" label="Create" />
+          <q-btn @click="_removeSelectedChecklists()" class="col-6" color="secondary" glossy icon="remove_circle" label="Remove" />
         </q-btn-group>
       </q-footer>
 

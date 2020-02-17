@@ -63,7 +63,7 @@ $default-gradient-style: linear-gradient(rgba(255, 255, 255, 0.15), rgba(0, 0, 0
 }
 
 .q-header {
-  /* background-color: #f1bb69; */
+  // background-color: #f1bb69;
   color: #ffffff;
   text-shadow: none;
   background-image: $default-gradient-style;
@@ -71,21 +71,32 @@ $default-gradient-style: linear-gradient(rgba(255, 255, 255, 0.15), rgba(0, 0, 0
 
 .checklist-entities-format {
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 20% auto;
 }
 
 .checklist-button-group {
+  // position: absolute;
   margin-right: 20px;
   button {
     height: 25%;
     font-size: 16pt;
     border-radius: 0;
+    // position: fixed;
+  }
+  button:nth-child(1) {
+    position: fixed;
+    top: 6%;
+    left: 0px;
+  }
+  button:nth-child(2) {
+    position: fixed;
+    top: 31%;
+    left: 0px;
   }
 }
 
 .checklist-item {
-    .handle {
-        position: fixed;
-        right: 0px;
-    }
+  .handle {
+      right: 0px;
+  }
 }

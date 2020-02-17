@@ -34,7 +34,7 @@
         <q-card-section>
         <q-input placeholder="Enter item text" dense v-model="tempItemText" autofocus @keyup.enter="_addNewChecklistItem()" />
         </q-card-section>
-        <q-card-actions align="right" class="text-primary">
+        <q-card-actions align="left" class="text-primary">
           <q-btn @click="_addNewChecklistItem()" flat label="Add" v-close-popup />
           <q-btn flat label="Cancel" v-close-popup @click="closePrompt()" />
         </q-card-actions>
@@ -49,7 +49,7 @@
         <q-card-section>
           <q-input placeholder="Enter item text" dense v-model="tempItemText" autofocus @keyup.enter="_updateChecklistItem()" />
         </q-card-section>
-        <q-card-actions align="right" class="text-primary">
+        <q-card-actions align="left" class="text-primary">
           <q-btn @click="_updateChecklistItem()" flat label="Update" v-close-popup />
           <q-btn flat label="Cancel" v-close-popup @click="closePrompt()" />
         </q-card-actions>
@@ -104,8 +104,33 @@ export default {
   },
   mounted() {
     console.log(`[index page] Mounted with active checklist "${this.$store.getters.getActiveChecklist.name}"`);
+    this.updatePageDimensions();
   },
   methods: {
+    waitForDocumentElement(selector) {
+      return new Promise((resolve, reject) => {
+        let waitForElementToDisplay = (selector, time) => {
+          if (document.querySelector(selector) != null) {
+            resolve(document.querySelector(selector));
+          } else {
+            setTimeout(() => {
+              waitForElementToDisplay(selector, time);
+            }, time);
+          }
+        }
+        waitForElementToDisplay(selector, 100);
+      });
+    },
+    updatePageDimensions() {
+      this.waitForDocumentElement(".checklist-item").then(element => {
+        document
+          .querySelector(".checklist-button-group")
+          .setAttribute("style", `width: ${(window.innenrWidth * (30 / 100)).toString()}px;`);
+        element
+          .setAttribute("style", `width: ${(window.innerWidth * (80 / 100)).toString()}px;`);
+        console.log("[index page] Updated checklist page dimensions");
+      })
+    },
     filterForSelectedChecklistItems() {
       return this.activeChecklistItems.filter(i => i.selected);
     },
@@ -123,6 +148,9 @@ export default {
       /** Reset the relevant data points. */
       this.prompt = false;
       this.tempItemText = "";
+
+      /** Update checklist page dimensions */
+      this.updatePageDimensions();
     },
     _removeSelectedChecklistItems() {
       this.$store.commit("removeSelectedChecklistItems", this.filterForSelectedChecklistItems());
