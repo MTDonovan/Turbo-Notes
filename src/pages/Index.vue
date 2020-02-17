@@ -32,7 +32,7 @@
           <div class="text-h6">New checklist item</div>
         </q-card-section> -->
         <q-card-section>
-        <q-input placeholder="Enter item text" dense v-model="tempItemText" autofocus @keyup.enter="_addNewChecklistItem()" />
+        <q-input placeholder="Enter checklist item text" dense v-model="tempItemText" autofocus @keyup.enter="_addNewChecklistItem()" />
         </q-card-section>
         <q-card-actions align="left" class="text-primary">
           <q-btn @click="_addNewChecklistItem()" flat label="Add" v-close-popup />
@@ -47,7 +47,7 @@
           <div class="text-h6">Update checklist item</div>
         </q-card-section> -->
         <q-card-section>
-          <q-input placeholder="Update item text" dense v-model="tempItemText" autofocus @keyup.enter="_updateChecklistItem()" />
+          <q-input placeholder="Update checklist item text" dense v-model="tempItemText" autofocus @keyup.enter="_updateChecklistItem()" />
         </q-card-section>
         <q-card-actions align="left" class="text-primary">
           <q-btn @click="_updateChecklistItem()" flat label="Update" v-close-popup />

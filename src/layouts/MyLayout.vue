@@ -52,9 +52,9 @@
 
       <q-dialog v-model="prompt" persistent>
         <q-card style="min-width: 350px">
-          <q-card-section>
+          <!-- <q-card-section>
             <div class="text-h6">New checklist</div>
-          </q-card-section>
+          </q-card-section> -->
           <q-card-section>
             <q-input maxlength="50" placeholder="Enter checklist name" dense v-model="tempChecklistName" autofocus @keyup.enter="_addNewChecklist()" />
             <q-input placeholder="Enter checklist description (optional)" dense v-model="tempChecklistDesc" @keyup.enter="_addNewChecklist()" />
@@ -68,9 +68,9 @@
 
       <q-dialog v-model="updateChecklistPrompt" persistent>
         <q-card style="min-width: 350px">
-          <q-card-section>
+          <!-- <q-card-section>
             <div class="text-h6">Update checklist</div>
-          </q-card-section>
+          </q-card-section> -->
           <q-card-section>
             <q-input maxlength="50" placeholder="Update checklist name" dense v-model="tempChecklistName" autofocus @keyup.enter="_updateChecklist()" />
             <q-input placeholder="Update checklist description" dense v-model="tempChecklistDesc" @keyup.enter="_updateChecklist()" />
