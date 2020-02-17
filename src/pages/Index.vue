@@ -28,9 +28,9 @@
 
     <q-dialog v-model="prompt" persistent>
       <q-card style="min-width: 350px">
-        <q-card-section>
+        <!-- <q-card-section>
           <div class="text-h6">New checklist item</div>
-        </q-card-section>
+        </q-card-section> -->
         <q-card-section>
         <q-input placeholder="Enter item text" dense v-model="tempItemText" autofocus @keyup.enter="_addNewChecklistItem()" />
         </q-card-section>
@@ -43,11 +43,11 @@
 
     <q-dialog v-model="updateItemPrompt" persistent>
       <q-card style="min-width: 350px">
-        <q-card-section>
+        <!-- <q-card-section>
           <div class="text-h6">Update checklist item</div>
-        </q-card-section>
+        </q-card-section> -->
         <q-card-section>
-          <q-input placeholder="Enter item text" dense v-model="tempItemText" autofocus @keyup.enter="_updateChecklistItem()" />
+          <q-input placeholder="Update item text" dense v-model="tempItemText" autofocus @keyup.enter="_updateChecklistItem()" />
         </q-card-section>
         <q-card-actions align="left" class="text-primary">
           <q-btn @click="_updateChecklistItem()" flat label="Update" v-close-popup />
@@ -105,6 +105,11 @@ export default {
   mounted() {
     console.log(`[index page] Mounted with active checklist "${this.$store.getters.getActiveChecklist.name}"`);
     this.updatePageDimensions();
+    this.$nextTick(() => {
+      window.addEventListener("resize", () => {
+        this.updatePageDimensions();
+      });
+    });
   },
   methods: {
     waitForDocumentElement(selector) {

@@ -63,14 +63,18 @@
 
 .checklist-button-group button:nth-child(1) {
   position: fixed;
-  top: 6%;
+  top: 10%;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
   left: 0px;
 }
 
 .checklist-button-group button:nth-child(2) {
   position: fixed;
-  top: 31%;
+  top: 36%;
   left: 0px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 
 .checklist-item .handle {
