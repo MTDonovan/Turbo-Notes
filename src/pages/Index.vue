@@ -111,6 +111,11 @@ export default {
       });
     });
   },
+  watch: {
+    activeChecklist() {
+      this.updatePageDimensions();
+    }
+  },
   methods: {
     waitForDocumentElement(selector) {
       return new Promise((resolve, reject) => {
