@@ -109,12 +109,12 @@ export default {
   },
   data() {
     return {
-      leftDrawerOpen: false,
-      tempChecklistName: "",
-      tempChecklistDesc: "",
-      prompt: false,
+      leftDrawerOpen       : false,
+      tempChecklistName    : "",
+      tempChecklistDesc    : "",
+      prompt               : false,
       updateChecklistPrompt: false,
-      updateChecklistObj: {}
+      updateChecklistObj   : {}
     }
   },
   computed: {

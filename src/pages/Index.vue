@@ -77,9 +77,9 @@ export default {
   },
   data() {
     return {
-      prompt: false,
-      tempItemText: "",
-      updateItemPrompt: false,
+      prompt                : false,
+      tempItemText          : "",
+      updateItemPrompt      : false,
       updateChecklistItemObj: {}
     }
   },
