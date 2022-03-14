@@ -8,7 +8,7 @@
         round
         @click="leftDrawerOpen = !leftDrawerOpen"
         icon="menu_open"
-        aria-label="menu_open"
+        aria-label="open checklist overview"
         />
 
       <q-toolbar-title>
@@ -27,22 +27,33 @@
     content-class="bg-grey-2"
     >
     <q-list>
-      <div>
-        <q-item-label header>Checklists</q-item-label>
+      <div class="checklist-overview-header">
+        <!-- EDIT HERE -->
+        <q-toolbar>
+          <q-btn
+            flat
+            dense
+            round
+            @click="leftDrawerOpen = !leftDrawerOpen"
+            icon="close"
+            aria-label="close checklist overview"
+            />
+          <q-item-label header>Checklists</q-item-label>
+          </q-toolbar>
       </div>
 
       <draggable v-model="checklists" @start="drag=true" @end="drag=false" handle=".handle">
-        <q-item clickable tag="a" v-for="(i, k) in checklists" :key="k" :style="checklistSelectorStyle(i.active)">
-          <q-item-section avatar @click="_setActiveCheckList(i.id)">
+        <q-item name="checklist overview item" clickable tag="a" v-for="(i, k) in checklists" :key="k" :style="checklistSelectorStyle(i.active)">
+          <q-item-section name="set active checklist" avatar @click="_setActiveCheckList(i.id)">
             <q-icon name="open_in_new" />
           </q-item-section>
 
           <q-item-section @click="openUpdateChecklistPrompt(i)">
-            <q-item-label class="checklist-name-in-drawer" v-if="i.name">{{ i.name }}</q-item-label>
+            <q-item-label name="checklist name" class="checklist-name-in-drawer" v-if="i.name">{{ i.name }}</q-item-label>
             <q-item-label v-else><i>No checklist name</i></q-item-label>
-            <q-item-label class="checklist-desc-in-drawer" :style="i.desc ? '' : 'font-style: italic'" caption>{{ i.desc ? i.desc : 'No description' }}</q-item-label>
+            <q-item-label name="checklist description" class="checklist-desc-in-drawer" :style="i.desc ? '' : 'font-style: italic'" caption>{{ i.desc ? i.desc : 'No description' }}</q-item-label>
           </q-item-section>
-          <q-checkbox v-model="i.selected"></q-checkbox>
+          <q-checkbox role="checkbox" v-model="i.selected"></q-checkbox>
           <q-btn flat icon="menu" class="handle"></q-btn>
         </q-item>
       </draggable>
@@ -56,8 +67,8 @@
             <div class="text-h6">New checklist</div>
           </q-card-section> -->
           <q-card-section>
-            <q-input maxlength="50" placeholder="Enter checklist name" dense v-model="tempChecklistName" autofocus @keyup.enter="_addNewChecklist()" />
-            <q-input placeholder="Enter checklist description (optional)" dense v-model="tempChecklistDesc" @keyup.enter="_addNewChecklist()" />
+            <q-input maxlength="50" name="enter checklist name" placeholder="Enter checklist name" dense v-model="tempChecklistName" autofocus @keyup.enter="_addNewChecklist()" />
+            <q-input name="enter checklist description" placeholder="Enter checklist description (optional)" dense v-model="tempChecklistDesc" @keyup.enter="_addNewChecklist()" />
           </q-card-section>
           <q-card-actions align="left" class="text-primary">
             <q-btn @click="_addNewChecklist()" flat label="Add" v-close-popup />
@@ -72,8 +83,8 @@
             <div class="text-h6">Update checklist</div>
           </q-card-section> -->
           <q-card-section>
-            <q-input maxlength="50" placeholder="Update checklist name" dense v-model="tempChecklistName" autofocus @keyup.enter="_updateChecklist()" />
-            <q-input placeholder="Update checklist description" dense v-model="tempChecklistDesc" @keyup.enter="_updateChecklist()" />
+            <q-input maxlength="50" name="update checklist name" placeholder="Update checklist name" dense v-model="tempChecklistName" autofocus @keyup.enter="_updateChecklist()" />
+            <q-input name="update checklist description" placeholder="Update checklist description" dense v-model="tempChecklistDesc" @keyup.enter="_updateChecklist()" />
           </q-card-section>
           <q-card-actions align="left" class="text-primary">
             <q-btn @click="_updateChecklist()" flat label="Update" v-close-popup />
@@ -84,8 +95,8 @@
 
       <q-footer class="flex flex-center">
         <q-btn-group style="width: 100%">
-          <q-btn @click="prompt = true" class="col-6" color="primary" glossy icon="create_new_folder" label="Create" />
-          <q-btn @click="_removeSelectedChecklists()" class="col-6" color="secondary" glossy icon="remove_circle" label="Remove" />
+          <q-btn id="create-new-checklist" @click="prompt = true" class="col-6" color="primary" glossy icon="create_new_folder" label="Create" />
+          <q-btn id="remove-checklist" @click="_removeSelectedChecklists()" class="col-6" color="secondary" glossy icon="remove_circle" label="Remove" />
         </q-btn-group>
       </q-footer>
 
