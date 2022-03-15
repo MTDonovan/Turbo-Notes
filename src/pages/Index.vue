@@ -1,9 +1,9 @@
 <template>
-<q-page id="main-notes-index" class="flex flex-left">
+<q-page name="internal checklist view" id="main-notes-index" class="flex flex-left">
   <q-list class="checklist-entities-format">
     <div class="checklist-button-group">
-      <q-btn @click="prompt = true" square :disable="disableChecklistItemButtons" class="col-6" color="primary" icon="note_add" />
-      <q-btn @click="_removeSelectedChecklistItems()" square :disable="disableChecklistItemButtons" class="col-6" color="secondary" icon="remove_circle"/>
+      <q-btn name="add new checklist item" @click="prompt = true" square :disable="disableChecklistItemButtons" class="col-6" color="primary" icon="note_add" />
+      <q-btn name="remove checklist item" @click="_removeSelectedChecklistItems()" square :disable="disableChecklistItemButtons" class="col-6" color="secondary" icon="remove_circle"/>
     </div>
     
     <q-item-label v-if="!activeChecklist.id" class="no-active-checklist-found-message">No checklist is currently open.<br><br>Click the hamburger icon at the top left to open the checklists overview.</q-item-label>
@@ -32,7 +32,7 @@
           <div class="text-h6">New checklist item</div>
         </q-card-section> -->
         <q-card-section>
-        <q-input placeholder="Enter checklist item text" dense v-model="tempItemText" autofocus @keyup.enter="_addNewChecklistItem()" />
+        <q-input name="new checklist item name input" placeholder="Enter checklist item text" dense v-model="tempItemText" autofocus @keyup.enter="_addNewChecklistItem()" />
         </q-card-section>
         <q-card-actions align="left" class="text-primary">
           <q-btn @click="_addNewChecklistItem()" flat label="Add" v-close-popup />
@@ -43,9 +43,6 @@
 
     <q-dialog v-model="updateItemPrompt" persistent>
       <q-card style="min-width: 350px">
-        <!-- <q-card-section>
-          <div class="text-h6">Update checklist item</div>
-        </q-card-section> -->
         <q-card-section>
           <q-input placeholder="Update checklist item text" dense v-model="tempItemText" autofocus @keyup.enter="_updateChecklistItem()" />
         </q-card-section>
@@ -55,13 +52,6 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
-    
-    <!-- <q-footer class="flex flex-center">
-      <q-btn-group style="width: 100%">
-        <q-btn @click="prompt = true" :disable="disableChecklistItemButtons" class="col-6" color="primary" glossy label="Create" />
-        <q-btn @click="_removeSelectedChecklistItems()" :disable="disableChecklistItemButtons" class="col-6" color="secondary" glossy label="Remove" />
-      </q-btn-group>
-    </q-footer> -->
   </q-page>
 </template>
 

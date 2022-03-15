@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 import CheckListOverview from '../support/page-objects/CheckListOverview';
+import CheckListInternalView from '../support/page-objects/CheckListInternalView';
 
 describe('visit the app\'s default empty state view', () => {
   /**
@@ -62,6 +63,24 @@ describe('visit the app\'s default empty state view', () => {
   it('user shall have the ability to change the active checklist', () => {
     const checkListOverview = new CheckListOverview();
     checkListOverview.setActiveCheckListItem('index', 1);
+  });
+
+  // it('user shall see the correct empty state text in the internal checklist modal', () => {
+  //   const checkListInternalView = new CheckListInternalView();
+  //   checkListInternalView.checkModelEmptyState();
+  // });
+
+  it('user shall have the ability to add a new checklist item', () => {
+    const checkListInternalView = new CheckListInternalView();
+    var fn = (text) => {
+      checkListInternalView.clickAddCheckListButton();
+      checkListInternalView.getNewCheckListModalInput().type(text);
+      checkListInternalView.clickNewCheckListModalAddButton();  
+      checkListInternalView.clickNewCheckListModalCancelButton();
+    }
+    fn("New checklist item quis nostrud exercitation ullamco laboris nisi ut aliquip #1");
+    fn("New checklist item quis nostrud exercitation ullamco laboris nisi ut aliquip #2");
+    fn("New checklist item quis nostrud exercitation ullamco laboris nisi ut aliquip #3");
   });
 
 });

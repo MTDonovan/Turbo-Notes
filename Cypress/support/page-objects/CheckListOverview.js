@@ -1,4 +1,5 @@
 class CheckListOverview {
+
   getOverviewContainer() {
     return cy.get('aside');
   }
@@ -124,7 +125,6 @@ class CheckListOverview {
       $el.click();
     });
   }
-
 }
 
 export default CheckListOverview;
